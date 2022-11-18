@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { addUser, deleteUser } from "./userSlice";
 
 const newUserBack = {
-  backgroundColor: "red",
+  backgroundColor: "lightblue",
   padding: "10px",
   margin: "5px",
   borderRadius: "10px",
   maxWidth: "400px",
+  color: '#000',
   // overflow: "hidden",
 };
 export const UserView = () => {
