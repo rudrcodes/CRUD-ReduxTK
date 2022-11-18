@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addUser, deleteUser } from "./userSlice";
 
 const newUserBack = {
-  backgroundColor: "lightblue",
+  backgroundColor: "yellow",
   padding: "10px",
   margin: "5px",
   borderRadius: "10px",
