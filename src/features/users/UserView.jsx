@@ -9,7 +9,7 @@ const newUserBack = {
   margin: "5px",
   borderRadius: "10px",
   maxWidth: "400px",
-  color: '#000',
+  color: "#000",
   // overflow: "hidden",
 };
 export const UserView = () => {
@@ -25,27 +25,31 @@ export const UserView = () => {
   // },[])
   const inputRef = useRef(null);
   const users = useSelector((storeState) => storeState.users.users);
-  let count = useSelector((storeState) => storeState.users.count);
-
+  let count = 0;
+  count = useSelector((storeState) => storeState.users.count);
   useEffect(() => {
     inputRef.current.focus();
-  }, []);
+  }, [count]);
   const dispatch = useDispatch();
   const [newUser, setnewUser] = useState(null);
   // console.log(newUser);
   const addUserFunction = () => {
     if (!newUser) return;
     dispatch(addUser(newUser));
+    localStorage.setItem(`${count}`, newUser);
     // inputRef.current.value
     setnewUser("");
 
     // localStorage.setItem(`${newUser}`, newUser);
   };
-  const deleteUserFunction = (user) => {
+  const deleteUserFunction = (userInd) => {
     dispatch(deleteUser());
-    users.map((ele) => {
-      // if (user == ele) ;
-    });
+    // users.map((ele) => {
+    //   // if (user == ele) ;
+    // });
+    // console.log(userInd);
+    localStorage.key(userInd);
+    console.log(count);
   };
 
   return (
