@@ -16,6 +16,7 @@ function App() {
       <hr style={{ width: "400px" }} /> */}
       <h1>CRUD in REDUX-TK</h1>
       <UserView />
+      {/* https://rudransh-crud-rtk.netlify.app/ */}
     </div>
   );
 }
