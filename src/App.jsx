@@ -9,11 +9,12 @@ function App() {
 
   return (
     <div className="App">
-      <AnotherCake />
+      {/* <AnotherCake />
       <br />
       <hr style={{ width: "400px" }} />
       <Cake />
-      <hr style={{ width: "400px" }} />
+      <hr style={{ width: "400px" }} /> */}
+      <h1>CRUD in REDUX-TK</h1>
       <UserView />
     </div>
   );
