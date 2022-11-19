@@ -1,25 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const usersArr = [];
+// const usersArr = [];
 
 const usersInit =
   localStorage.getItem("users") != null
     ? JSON.parse(localStorage.getItem("users"))
-    : [];
+    : [{ id: 0, name: "Test", userName: "Testcodes" }];
 
-const countInit = localStorage.getItem("count")
-  ? localStorage.getItem("count")
-  : 0;
+// const countInit = localSt orage.getItem("count")
+//   ? localStorage.getItem("count")
+//   : 0;
 
-for (let i = 0; i < countInit; i++) {
-  usersArr.push(localStorage.getItem(i));
-}
-console.log(usersArr);
+// for (let i = 0; i < countInit; i++) {
+//   usersArr.push(localStorage.getItem(i));
+// }
+console.log(usersInit);
 
 const initialState = {
-  users: usersArr,
-  // users: (countInit==0)?[]:,
-  count: countInit,
+  users: usersInit,
+  // count: countInit,
 };
 
 const userSlice = createSlice({
@@ -27,32 +26,34 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
+      console.log("added");
       state.users.push(action.payload);
-      // state.count++;
-      localStorage.setItem("count", state.count);
-      // localStorage.getItem("count")
-
-      let item = action.payload;
-      // ek array as a key ko local storage mein dalna h
-      // const present = state.users.forEach((element) => {
-      //   // if (element === item) {
-      //   //   alert("error");
-      //   //   return true;
-      //   // }
-      //   console.log(element);
-      // });
-      // if (present) return;
+      localStorage.setItem("users", JSON.stringify(state.users));
+      // let item = action.payload;
     },
     deleteUser: (state, action) => {
       console.log("delete");
-      // localStorage
-      // users.map((vaue, ind, arr) => {});
-      //  state.users.forEach(element => {
-      //   if(element==action.payload) console.log(element)
-      //  });
+      state.users = state.users.filter((user) => user.id !== action.payload);
+      localStorage.setItem("users", JSON.stringify(state.users));
+      // console.log(state.users.filter((user) => user.id !== action.payload.id));
+    },
+    updateUser: (state, action) => {
+      console.log("updated");
+      // console.log(action.payload.id);
+      console.log(action.payload.userName);
+      state.users.map((user) => {
+        if (user.id === action.payload.id) {
+          // return {
+          // ...user,
+          user.userName = action.payload.userName;
+          // };
+        }
+      });
+      // localStorage.setItem("users", JSON.stringify(state.users));
+      // console.log(state.users.filter((user) => user.id !== action.payload.id));
     },
   },
 });
 
 export default userSlice.reducer;
-export const { addUser, deleteUser } = userSlice.actions;
+export const { addUser, deleteUser, updateUser } = userSlice.actions;
